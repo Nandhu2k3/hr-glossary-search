@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HR Glossary for Teams</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #e9f7fb;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            text-align: center;
+            padding: 60px 20px 20px;
+        }
+
+        .container h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .container p {
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+            color: #555;
+        }
+
+        .search-wrapper {
+            margin-top: 40px;
+            text-align: center;
+        }
+
+        #search-input {
+            width: 80%;
+            max-width: 500px;
+            padding: 14px 20px;
+            border: 2px solid #ccc;
+            border-radius: 50px;
+            font-size: 16px;
+            outline: none;
+            transition: 0.3s;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+            background-color: #ffffff;
+            color: #333;
+        }
+
+        #search-input:focus {
+            border-color: #00bfa6;
+            box-shadow: 0 0 0 4px rgba(0, 191, 166, 0.1);
+        }
+
+        #results {
+            list-style: none;
+            padding: 0;
+            margin-top: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        #results li {
+            margin-bottom: 12px;
+            padding: 14px 20px;
+            background-color: #f6f8f9;
+            border-radius: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+            transition: all 0.2s ease;
+        }
+
+        #results li:hover {
+            background-color: #e4f9f7;
+        }
+
+        #results li a {
+            text-decoration: none;
+            color: #007a72;
+            font-weight: 600;
+            display: block;
+        }
+
+        .loading {
+            padding: 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        .error {
+            padding: 20px;
+            text-align: center;
+            color: #d32f2f;
+            background-color: #ffebee;
+            border-radius: 8px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>HR Glossary for Teams</h1>
+        <p>Foster retention and productivity with AI-first, industry and academia-backed methodology.</p>
+        
+        <div class="search-wrapper">
+            <input type="text" id="search-input" placeholder="🔍 Search glossary terms..." />
+            <ul id="results"></ul>
+        </div>
+    </div>
+
+    <script>
+        let glossaryData = [];
+        const input = document.getElementById("search-input");
+        const results = document.getElementById("results");
+
+        // Show loading state
+        results.innerHTML = '<li class="loading">Loading glossary terms...</li>';
+
+        // Fetch glossary data from Netlify function
+        fetch("/.netlify/functions/glossary")
+            .then(res => {
+                if (!res.ok) {
+                    throw new Error(`HTTP error! status: ${res.status}`);
+                }
+                return res.json();
+            })
+            .then(data => {
+                if (!Array.isArray(data)) {
+                    throw new Error("Data not in expected format");
+                }
+                
+                glossaryData = data;
+                results.innerHTML = ''; // Clear loading message
+                
+                // Add search functionality
+                input.addEventListener("input", handleSearch);
+            })
+            .catch(err => {
+                console.error("Failed to fetch glossary data:", err);
+                results.innerHTML = `
+                    <li class="error">
+                        Failed to load glossary terms. Please try refreshing the page.
+                        <br><small>Error: ${err.message}</small>
+                    </li>
+                `;
+            });
+
+        function handleSearch() {
+            const query = input.value.toLowerCase().trim();
+            results.innerHTML = '';
+
+            if (!query) return;
+
+            const matches = glossaryData.filter(item =>
+                (item.name || "").toLowerCase().includes(query) ||
+                (item.description || "").toLowerCase().includes(query)
+            );
+
+            if (matches.length === 0) {
+                results.innerHTML = `<li>No matching terms found for "${input.value}".</li>`;
+                return;
+            }
+
+            matches.forEach(item => {
+                const li = document.createElement("li");
+                li.innerHTML = `<a href="${item.url}" target="_blank">${item.name}</a>`;
+                results.appendChild(li);
+            });
+        }
+    </script>
+</body>
+</html>
