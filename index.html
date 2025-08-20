@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -98,6 +97,16 @@
             border-radius: 8px;
             margin: 20px;
         }
+
+        .more-results {
+            padding: 10px 20px;
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            border: 1px dashed #ccc;
+        }
     </style>
 </head>
 <body>
@@ -115,6 +124,7 @@
         let glossaryData = [];
         const input = document.getElementById("search-input");
         const results = document.getElementById("results");
+        const MAX_RESULTS = 5;
 
         // Show loading state
         results.innerHTML = '<li class="loading">Loading glossary terms...</li>';
@@ -154,21 +164,49 @@
 
             if (!query) return;
 
-            const matches = glossaryData.filter(item =>
-                (item.name || "").toLowerCase().includes(query) ||
-                (item.description || "").toLowerCase().includes(query)
-            );
+            // Separate matches into different priority categories - ONLY search in names
+            const exactMatches = [];           // Exact name match
+            const startsWithMatches = [];      // Name starts with query
+            const nameContainsMatches = [];    // Name contains query
 
-            if (matches.length === 0) {
+            glossaryData.forEach(item => {
+                const name = (item.name || "").toLowerCase().trim();
+                // Note: We're NOT searching in descriptions anymore
+                
+                // Exact match (highest priority)
+                if (name === query) {
+                    exactMatches.push(item);
+                }
+                // Name starts with query (second priority)
+                else if (name.startsWith(query)) {
+                    startsWithMatches.push(item);
+                }
+                
+                // No description matching - removed completely
+            });
+
+            // Combine all matches in priority order - only name matches now
+            const allMatches = [
+                ...exactMatches,
+                ...startsWithMatches,
+                ...nameContainsMatches
+            ];
+
+            if (allMatches.length === 0) {
                 results.innerHTML = `<li>No matching terms found for "${input.value}".</li>`;
                 return;
             }
 
-            matches.forEach(item => {
+            // Show only top 5 results
+            const topResults = allMatches.slice(0, MAX_RESULTS);
+            
+            topResults.forEach(item => {
                 const li = document.createElement("li");
                 li.innerHTML = `<a href="${item.url}" target="_blank">${item.name}</a>`;
                 results.appendChild(li);
             });
+
+            // No "more results" message - just show the top 5 results
         }
     </script>
 </body>

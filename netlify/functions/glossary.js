@@ -89,33 +89,29 @@ exports.handler = async (event, context) => {
       }
       
       // Transform the data - try different field name variations
-const glossaryItems = items.map(item => {
-    const name = item.name || item.title || item['name-field'] || item.fieldData?.name || item.fieldData?.title || 'Untitled';
-    const slug = item.slug || item['url-slug'] || item.fieldData?.slug || item.fieldData?.['url-slug'] || '';
-    
-    return {
-      name: name,
-      slug: slug,
-      url: `https://hr-glossary.culturemonkey.io/blogs/${slug}`,
-      description: item.description || item.excerpt || item.fieldData?.description || '',
-      _id: item._id || item.id
-    };
-  });
+      const glossaryItems = items.map(item => {
+        const name = item.name || item.title || item['name-field'] || item.fieldData?.name || item.fieldData?.title || 'Untitled';
+        const slug = item.slug || item['url-slug'] || item.fieldData?.slug || item.fieldData?.['url-slug'] || '';
+        
+        return {
+          name: name,
+          slug: slug,
+          url: `https://hr-glossary.culturemonkey.io/blogs/${slug}`,
+          description: item.description || item.excerpt || item.fieldData?.description || '',
+          _id: item._id || item.id
+        };
+      });
   
-  // ✅ Limit results to 5
-  const limitedGlossaryItems = glossaryItems.slice(0, 5);
-  
-  console.log('Returning', limitedGlossaryItems.length, 'transformed items');
-  if (limitedGlossaryItems.length > 0) {
-    console.log('Sample transformed item:', limitedGlossaryItems[0]);
-  }
-  
-  return {
-    statusCode: 200,
-    headers,
-    body: JSON.stringify(limitedGlossaryItems) // <-- use limitedGlossaryItems
-  };
-  
+      console.log('Returning', glossaryItems.length, 'transformed items');
+      if (glossaryItems.length > 0) {
+        console.log('Sample transformed item:', glossaryItems[0]);
+      }
+      
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify(glossaryItems)
+      };
   
     } catch (error) {
       console.error('=== ERROR IN FUNCTION ===');
