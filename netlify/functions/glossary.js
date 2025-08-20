@@ -96,7 +96,7 @@ exports.handler = async (event, context) => {
         return {
           name: name,
           slug: slug,
-          url: `https://hr-glossary.culturemonkey.io/blogs/${slug}`,
+          url: `https://www.culturemonkey.io/hr-glossary/blogs/${slug}`,
           description: item.description || item.excerpt || item.fieldData?.description || '',
           _id: item._id || item.id
         };
