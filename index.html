@@ -1,213 +1,271 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>HR Glossary for Teams</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #e9f7fb;
-            color: #333;
-            margin: 0;
-            padding: 0;
-        }
-
-        .container {
-            text-align: center;
-            padding: 60px 20px 20px;
-        }
-
-        .container h1 {
-            font-size: 36px;
-            margin-bottom: 10px;
-        }
-
-        .container p {
-            font-size: 18px;
-            max-width: 700px;
-            margin: 0 auto;
-            color: #555;
-        }
-
-        .search-wrapper {
-            margin-top: 40px;
-            text-align: center;
-        }
-
-        #search-input {
-            width: 80%;
-            max-width: 500px;
-            padding: 14px 20px;
-            border: 2px solid #ccc;
-            border-radius: 50px;
-            font-size: 16px;
-            outline: none;
-            transition: 0.3s;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-            background-color: #ffffff;
-            color: #333;
-        }
-
-        #search-input:focus {
-            border-color: #00bfa6;
-            box-shadow: 0 0 0 4px rgba(0, 191, 166, 0.1);
-        }
-
-        #results {
-            list-style: none;
-            padding: 0;
-            margin-top: 30px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        #results li {
-            margin-bottom: 12px;
-            padding: 14px 20px;
-            background-color: #f6f8f9;
-            border-radius: 12px;
-            border: 1px solid #ddd;
-            text-align: left;
-            transition: all 0.2s ease;
-        }
-
-        #results li:hover {
-            background-color: #e4f9f7;
-        }
-
-        #results li a {
-            text-decoration: none;
-            color: #007a72;
-            font-weight: 600;
-            display: block;
-        }
-
-        .loading {
-            padding: 20px;
-            text-align: center;
-            color: #666;
-        }
-
-        .error {
-            padding: 20px;
-            text-align: center;
-            color: #d32f2f;
-            background-color: #ffebee;
-            border-radius: 8px;
-            margin: 20px;
-        }
-
-        .more-results {
-            padding: 10px 20px;
-            text-align: center;
-            color: #666;
-            font-style: italic;
-            background-color: #f0f8ff;
-            border-radius: 8px;
-            border: 1px dashed #ccc;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>HR Glossary for Teams</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+background-color: #e9f7fb;
+color: #333;
+margin: 0;
+padding: 0;
+ }
+.container {
+text-align: center;
+padding: 60px 20px 20px;
+ }
+.container h1 {
+font-size: 36px;
+margin-bottom: 10px;
+ }
+.container p {
+font-size: 18px;
+max-width: 700px;
+margin: 0 auto;
+color: #555;
+ }
+.search-wrapper {
+margin-top: 40px;
+text-align: center;
+ }
+#search-input {
+width: 80%;
+max-width: 500px;
+padding: 14px 20px;
+border: 2px solid #ccc;
+border-radius: 50px;
+font-size: 16px;
+outline: none;
+transition: 0.3s;
+box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+background-color: #ffffff;
+color: #333;
+ }
+#search-input:focus {
+border-color: #00bfa6;
+box-shadow: 0 0 0 4px rgba(0, 191, 166, 0.1);
+ }
+#results {
+list-style: none;
+padding: 0;
+margin-top: 30px;
+max-width: 600px;
+margin-left: auto;
+margin-right: auto;
+ }
+#results li {
+margin-bottom: 12px;
+padding: 14px 20px;
+background-color: #f6f8f9;
+border-radius: 12px;
+border: 1px solid #ddd;
+text-align: left;
+transition: all 0.2s ease;
+ }
+#results li:hover {
+background-color: #e4f9f7;
+ }
+#results li a {
+text-decoration: none;
+color: #007a72;
+font-weight: 600;
+display: block;
+ }
+.loading {
+padding: 20px;
+text-align: center;
+color: #666;
+ }
+.error {
+padding: 20px;
+text-align: center;
+color: #d32f2f;
+background-color: #ffebee;
+border-radius: 8px;
+margin: 20px;
+ }
+.more-results {
+padding: 10px 20px;
+text-align: center;
+color: #666;
+font-style: italic;
+background-color: #f0f8ff;
+border-radius: 8px;
+border: 1px dashed #ccc;
+ }
+</style>
 </head>
 <body>
-    <div class="container">
-        <h1>HR Glossary for Teams</h1>
-        <p>Foster retention and productivity with AI-first, industry and academia-backed methodology.</p>
-        
-        <div class="search-wrapper">
-            <input type="text" id="search-input" placeholder="🔍 Search glossary terms..." />
-            <ul id="results"></ul>
-        </div>
-    </div>
+<div class="container">
+<h1>HR Glossary for Teams</h1>
+<p>Foster retention and productivity with AI-first, industry and academia-backed methodology.</p>
+<div class="search-wrapper">
+<input type="text" id="search-input" placeholder="🔍 Search glossary terms..." />
+<ul id="results"></ul>
+</div>
+</div>
+<script>
+let glossaryData = [];
+const input = document.getElementById("search-input");
+const results = document.getElementById("results");
+const MAX_RESULTS = 5;
 
-    <script>
-        let glossaryData = [];
-        const input = document.getElementById("search-input");
-        const results = document.getElementById("results");
-        const MAX_RESULTS = 5;
+// Show loading state
+results.innerHTML = '<li class="loading">Loading glossary terms...</li>';
 
-        // Show loading state
-        results.innerHTML = '<li class="loading">Loading glossary terms...</li>';
+// Mock data for testing (replace with real API call later)
+const mockData = [
+  { name: "Abandonment rate", url: "#", description: "The percentage of employees who leave" },
+  { name: "Sabbatical leave", url: "#", description: "Extended time off for personal development" },
+  { name: "E-recruitment", url: "#", description: "Electronic recruitment processes" },
+  { name: "Employee engagement", url: "#", description: "Level of employee commitment" },
+  { name: "Performance appraisal", url: "#", description: "Employee performance evaluation" },
+  { name: "Recruitment", url: "#", description: "Process of finding new employees" },
+  { name: "Absenteeism", url: "#", description: "Pattern of absence from work" }
+];
 
-        // Fetch glossary data from Netlify function
-        fetch("/.netlify/functions/glossary")
-            .then(res => {
-                if (!res.ok) {
-                    throw new Error(`HTTP error! status: ${res.status}`);
-                }
-                return res.json();
-            })
-            .then(data => {
-                if (!Array.isArray(data)) {
-                    throw new Error("Data not in expected format");
-                }
-                
-                glossaryData = data;
-                results.innerHTML = ''; // Clear loading message
-                
-                // Add search functionality
-                input.addEventListener("input", handleSearch);
-            })
-            .catch(err => {
-                console.error("Failed to fetch glossary data:", err);
-                results.innerHTML = `
-                    <li class="error">
-                        Failed to load glossary terms. Please try refreshing the page.
-                        <br><small>Error: ${err.message}</small>
-                    </li>
-                `;
-            });
+// Use mock data for now
+glossaryData = mockData;
+results.innerHTML = ''; // Clear loading message
+input.addEventListener("input", handleSearch);
 
-        function handleSearch() {
-            const query = input.value.toLowerCase().trim();
-            results.innerHTML = '';
+// Uncomment below for real API when ready:
+/*
+fetch("/.netlify/functions/glossary")
+ .then(res => {
+if (!res.ok) {
+throw new Error(`HTTP error! status: ${res.status}`);
+ }
+return res.json();
+ })
+ .then(data => {
+if (!Array.isArray(data)) {
+throw new Error("Data not in expected format");
+ }
+glossaryData = data;
+results.innerHTML = '';
+input.addEventListener("input", handleSearch);
+ })
+ .catch(err => {
+console.error("Failed to fetch glossary data:", err);
+results.innerHTML = `
+ <li class="error">
+ Failed to load glossary terms. Please try refreshing the page.
+ <br><small>Error: ${err.message}</small>
+ </li>
+ `;
+ });
+*/
 
-            if (!query) return;
+// Normalize text for better matching
+function normalizeText(text) {
+  return text
+    .toLowerCase()
+    .replace(/[^\w\s]/g, ' ') // Replace punctuation with spaces
+    .replace(/\s+/g, ' ') // Normalize whitespace
+    .trim();
+}
 
-            // Separate matches into different priority categories - ONLY search in names
-            const exactMatches = [];           // Exact name match
-            const startsWithMatches = [];      // Name starts with query
-            const nameContainsMatches = [];    // Name contains query
+// Check if query matches at word boundaries
+function hasWordBoundaryMatch(text, query) {
+  const words = text.split(/\s+/);
+  return words.some(word => word.startsWith(query));
+}
 
-            glossaryData.forEach(item => {
-                const name = (item.name || "").toLowerCase().trim();
-                // Note: We're NOT searching in descriptions anymore
-                
-                // Exact match (highest priority)
-                if (name === query) {
-                    exactMatches.push(item);
-                }
-                // Name starts with query (second priority)
-                else if (name.startsWith(query)) {
-                    startsWithMatches.push(item);
-                }
-                
-                // No description matching - removed completely
-            });
+function handleSearch() {
+const query = input.value.trim();
+results.innerHTML = '';
 
-            // Combine all matches in priority order - only name matches now
-            const allMatches = [
-                ...exactMatches,
-                ...startsWithMatches,
-                ...nameContainsMatches
-            ];
+if (!query) return;
 
-            if (allMatches.length === 0) {
-                results.innerHTML = `<li>No matching terms found for "${input.value}".</li>`;
-                return;
-            }
+const normalizedQuery = normalizeText(query);
+const queryWords = normalizedQuery.split(/\s+/).filter(word => word.length > 0);
 
-            // Show only top 5 results
-            const topResults = allMatches.slice(0, MAX_RESULTS);
-            
-            topResults.forEach(item => {
-                const li = document.createElement("li");
-                li.innerHTML = `<a href="${item.url}" target="_blank">${item.name}</a>`;
-                results.appendChild(li);
-            });
-
-            // No "more results" message - just show the top 5 results
+// Score each item based on relevance
+const scoredItems = glossaryData.map(item => {
+  const name = item.name || "";
+  const normalizedName = normalizeText(name);
+  const description = item.description || "";
+  const normalizedDesc = normalizeText(description);
+  
+  let score = 0;
+  
+  // Exact match (highest priority)
+  if (normalizedName === normalizedQuery) {
+    score += 1000;
+  }
+  
+  // Starts with query (high priority)
+  else if (normalizedName.startsWith(normalizedQuery)) {
+    score += 500;
+  }
+  
+  // Word boundary matches (medium-high priority)
+  else if (hasWordBoundaryMatch(normalizedName, normalizedQuery)) {
+    score += 300;
+  }
+  
+  // Contains full query in name (medium priority)
+  else if (normalizedName.includes(normalizedQuery)) {
+    score += 200;
+  }
+  
+  // Individual word matches in name
+  queryWords.forEach(word => {
+    if (word.length > 1) { // Skip single characters for individual word matching
+      if (normalizedName.includes(word)) {
+        // Bonus for word at start
+        if (normalizedName.startsWith(word)) {
+          score += 100;
+        } else if (hasWordBoundaryMatch(normalizedName, word)) {
+          score += 75;
+        } else {
+          score += 25;
         }
-    </script>
+      }
+      
+      // Lower score for matches in description
+      if (normalizedDesc.includes(word)) {
+        score += 10;
+      }
+    }
+  });
+  
+  // For very short queries (like "ab"), prioritize word starts
+  if (normalizedQuery.length <= 2) {
+    const words = normalizedName.split(/\s+/);
+    words.forEach(word => {
+      if (word.startsWith(normalizedQuery)) {
+        score += 400; // High bonus for short query word starts
+      }
+    });
+  }
+  
+  return { ...item, searchScore: score };
+});
+
+// Filter items with score > 0 and sort by score (highest first)
+const allMatches = scoredItems
+  .filter(item => item.searchScore > 0)
+  .sort((a, b) => b.searchScore - a.searchScore);
+
+if (allMatches.length === 0) {
+  results.innerHTML = `<li>No matching terms found for "${input.value}".</li>`;
+  return;
+}
+
+// Show only top results
+const topResults = allMatches.slice(0, MAX_RESULTS);
+topResults.forEach(item => {
+  const li = document.createElement("li");
+  li.innerHTML = `<a href="${item.url}" target="_blank">${item.name}</a>`;
+  results.appendChild(li);
+});
+
+// More results indicator removed - just show top results
+}
+</script>
 </body>
 </html>
